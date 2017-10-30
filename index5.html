@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ex</title>
+        <meta name="description" content="ex">
+     <style>
+         *{padding:0px;
+         margin: 0px}
+        </style>
+        <link rel="stylesheet" href="main.css">
+        <script type="text/javascript">
+         
+            
+  onmousemove = function(event) {
+    //var x=-1;
+    
+   // Ловим событие для Interner Explorer 
+   var event = event || window.event; 
+   //alert("clientX = " + event.clientX); 
+  // alert("screenX = " + event.screenX); 
+  // alert("pageX = " + event.pageX); 
+
+        x = event.pageX;
+        y = event.pageY;
+        w = window.innerWidth;
+        h = window.innerHeight;
+   // setInterval(function(){
+        var drawingCanvas = document.getElementById('c1');
+        var context = drawingCanvas.getContext('2d'); 
+      
+      drawingCanvas.setAttribute('width', w);
+      drawingCanvas.setAttribute('height', h);
+      
+      
+      
+      
+      
+        //drawingCanvas.height = h + 'px';
+       // drawingCanvas.width = w + 'px';
+      // x++;
+        context.fillStyle = "black";  
+        context.fillRect(0, 0, w, h);
+        
+        context.fillStyle = "white"; 
+        context.font="12px Helvetica";
+        context.fillText(x+":"+y, 20, 50);
+        context.fillText(w+":"+h, 20, 20);
+        context.fillStyle = "white";  
+        
+        
+       var m=40;
+       var n=20;
+       // if (x>9){x=x-9}else{x==x}
+            for (var i = 0; i < m; i++) {
+                for (var j = 0; j < n; j++) {
+                    //context.fillStyle = "rgb(0, 162, 232)";
+                    //context.fillRect(i*12, (j*10)+x, 3, 9);
+                    
+                    //var r=Math.floor(Math.random()*h/20,1)
+                    //1=256 x=1
+                   
+                    var x2=i*w/m;
+                    var y2=j*h/n;
+                    
+                    var d1=Math.abs(x-x2);
+                    var d2=Math.abs(y-y2);
+                    var d=Math.sqrt(d1*d1+d2*d2);
+                    
+                    
+                    oy=w/(m*2)*d2/d;
+                    ox=h/(n*2)*d1/d;
+                     var cs=Math.round(200/d)/10;
+                    
+               context.strokeStyle="white";
+               context.lineWidth=3;
+                    
+                    
+                    
+                   if(x<x2){ox=-ox}else{ox=ox};
+                   if(y<y2){oy=oy}else{oy=-oy};
+                    context.beginPath();
+                    context.moveTo(x2,y2);
+                    context.lineTo(x2+oy,y2+ox);
+                    context.stroke();
+                    }
+            }
+     
+      
+  //  },1000)
+   }
+
+</script>
+    </head>
+    <body>
+<canvas id="c1">
+
+</canvas>
+
+    </body>
+</html>
+<!--
+
+    [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]]
+    [::::::::::::::      ::::::::::::::]
+    [::::::::::::::      ::::::::::::::]
+    [::::::[[[[[[[:      :]]]]]]]::::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[     CODE THE WEB     ]:::::]
+    [:::::[  http://brackets.io  ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [:::::[                      ]:::::]
+    [::::::[[[[[[[:      :]]]]]]]::::::]
+    [::::::::::::::      ::::::::::::::]
+    [::::::::::::::      ::::::::::::::]
+    [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]]
+
+-->
